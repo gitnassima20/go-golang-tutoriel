@@ -14,13 +14,14 @@ func printVariables() {
 	textMsg := "This is a short assignment"
 	temperature := 0.0
 
+    //multiple variables declaration:
+    averageOpenRate, displayMessage := 0.23, "is the average open rate of your message"
+
 	// Print values
-	fmt.Println("SMS Limit:", smsSendingLimit)
-	fmt.Println("Cost per SMS:", costPerSMS)
-	fmt.Println("Has Permission:", hasPermission)
-	fmt.Println("Username:", username)
 	fmt.Println("Total Messages:", totalMessages)
 	fmt.Println("Text Message:", textMsg)
 	fmt.Println("Temperature:", temperature)
+
+    fmt.Println(averageOpenRate, displayMessage)
 }
 
