@@ -7,4 +7,5 @@ func main() {
 
 	printVariables()
 	convertVariable()
+	formattingTypes()
 }
