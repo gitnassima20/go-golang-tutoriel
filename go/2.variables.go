@@ -17,11 +17,16 @@ func printVariables() {
     //multiple variables declaration:
     averageOpenRate, displayMessage := 0.23, "is the average open rate of your message"
 
+    //constants declaration: doesn't support short declaration syntax
+    const premiumPlanName = "Premmium Plan"
+
 	// Print values
 	fmt.Println("Total Messages:", totalMessages)
 	fmt.Println("Text Message:", textMsg)
 	fmt.Println("Temperature:", temperature)
 
     fmt.Println(averageOpenRate, displayMessage)
+
+    fmt.Println("plan:", premiumPlanName)
 }
 
