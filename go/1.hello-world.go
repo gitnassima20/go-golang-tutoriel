@@ -6,6 +6,10 @@ func main() {
 	fmt.Printf("%v %f %v %q\n",smsSendingLimit, costPerSMS, hasPermission, username)
 
 	printVariables()
+
 	convertVariable()
+
 	formattingTypes()
+
+	conditionalMsgFunc()
 }
