@@ -15,3 +15,14 @@ func concatUsage() {
 	fmt.Println(concat("Go", "is fantastic!"))
 	fmt.Println(concat("The 5th scenario", "has been released to the audience"))
 }
+
+//Passing variables by values in go
+func monthlyBillIncrease(costPerSend, numLastMonth, numThisMonth int) int {
+	lastMonthBill := getBillForMonth(costPerSend, numLastMonth)
+	thisMonthBill := getBillForMonth(costPerSend, numThisMonth)
+	return thisMonthBill - lastMonthBill
+}
+
+func getBillForMonth(costPerSend, messagesSent int) int {
+	return costPerSend * messagesSent
+}
