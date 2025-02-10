@@ -12,3 +12,22 @@ func conditionalMsgFunc() {
 		fmt.Println("Message not sent")
 	}
 }
+
+//Savety hack: if variable was intended to be used only in the if statement
+/* if INITIAL_STATEMENT, CONDTION {
+     
+  }
+*/
+
+func billingCost(plan string) float64 {
+	switch plan {
+	case "basic":
+		return 10.0
+	case "pro":
+		return 20.0
+	case "enterprise":
+		return 50.0
+	default:
+		return 0.0
+	}
+}
