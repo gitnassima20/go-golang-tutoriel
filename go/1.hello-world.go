@@ -12,4 +12,6 @@ func main() {
 	formattingTypes()
 
 	conditionalMsgFunc()
+
+	concatUsage()
 }
