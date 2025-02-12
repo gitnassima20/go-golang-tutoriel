@@ -80,3 +80,25 @@ func divide(dividend, divisor int) (int, error) {
 	}
 	return dividend/divisor, nil
 }
+
+//Anonymous functions: Used when the func is only being used once
+func printReports(intro, body, outro string) {
+	// Call printCostReport for each message with the correct cost function
+	printCostReport(func(message string) int {
+		return 2 * len(message) // Intro cost: 2x length
+	}, intro)
+
+	printCostReport(func(message string) int {
+		return 3 * len(message) // Body cost: 3x length
+	}, body)
+
+	printCostReport(func(message string) int {
+		return 4 * len(message) // Outro cost: 4x length
+	}, outro)
+}
+
+func printCostReport(costCalculator func(string) int, message string) {
+	cost := costCalculator(message)
+	fmt.Printf(`Message: "%s" Cost: %v cents`, message, cost)
+	fmt.Println()
+}

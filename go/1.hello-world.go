@@ -20,4 +20,10 @@ func main() {
 	yearsUntilEvents(22)
 
 	divide(2, 0)
+
+	printReports(
+		"Welcome to the Hotel California",
+		"Such a lovely place",
+		"Plenty of room at the Hotel California",
+	)
 }
