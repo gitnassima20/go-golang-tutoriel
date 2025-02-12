@@ -14,4 +14,8 @@ func main() {
 	conditionalMsgFunc()
 
 	concatUsage()
+
+	getProductMessage("basic")
+
+	yearsUntilEvents(22)
 }
