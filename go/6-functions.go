@@ -1,11 +1,14 @@
 package main
-import "fmt"
 
+import (
+	"errors"
+	"fmt"
+)
 
 /* could also be succinct
-  func add(x, y int) int {
-    return x + y
-  }
+func add(x, y int) int {
+  return x + y
+}
 */
 func concat(s1 string, s2 string) string {
 	return s1 + s2
@@ -66,5 +69,14 @@ func yearsUntilEvents(age int) ( yearsUntilAdult, yearsUntilDrinking, yearsUntil
 	if yearsUntilCarRental < 0 {
 		yearsUntilCarRental = 0
 	}
+	//naked return
 	return
+}
+
+//Guard Clauses OR Early returns
+func divide(dividend, divisor int) (int, error) {
+	if divisor == 0 {
+		return 0, errors.New("can't divide by zero")
+	}
+	return dividend/divisor, nil
 }

@@ -18,4 +18,6 @@ func main() {
 	getProductMessage("basic")
 
 	yearsUntilEvents(22)
+
+	divide(2, 0)
 }
