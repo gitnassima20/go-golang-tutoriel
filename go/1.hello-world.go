@@ -43,4 +43,11 @@ func main() {
 		message: "Welcome to Textio",
 	})
 	fmt.Println(output)
+
+	auth := authenticationInfo{
+		username: "myUser",
+		password: "myPass",
+	}
+
+	fmt.Println(auth.getBasicAuth())
 }

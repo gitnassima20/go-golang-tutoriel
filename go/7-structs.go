@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //Structs: Represent structured data
 type messageToSend struct {
 	message   string
@@ -38,3 +40,27 @@ func canSendMessage(mToSend messageToSend) bool {
 }*/
 
 //Embedded structs: When a struct contains another struct as a field
+
+/* type sender struct {
+	rateLimit int
+	userEmbeded
+}
+
+type userEmbeded struct {
+	name   string
+	number int
+}
+*/
+
+// Struct Methods in Go
+type authenticationInfo struct {
+	username string
+	password string
+}
+
+func (auth authenticationInfo) getBasicAuth() string {
+	return fmt.Sprintf(
+		"Authorization: Basic %s:%s",
+		auth.username, auth.password,
+	)
+}
