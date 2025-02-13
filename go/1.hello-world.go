@@ -14,6 +14,7 @@ func main() {
 
 	conditionalMsgFunc()
 
+	/* functions sections */
 	concatUsage()
 
 	getProductMessage("basic")
@@ -29,4 +30,17 @@ func main() {
 	)
 
 	bootUp()
+
+	/* structs sections */
+
+	output := canSendMessage(messageToSend{
+		sender: user{
+			name: "Textio",
+		},
+		recipient: user{
+			name: "You",
+		},
+		message: "Welcome to Textio",
+	})
+	fmt.Println(output)
 }
