@@ -5,10 +5,12 @@ import (
 	"fmt"
 )
 
-/* could also be succinct
-func add(x, y int) int {
-  return x + y
-}
+/*
+	could also be succinct
+
+	func add(x, y int) int {
+	  return x + y
+	}
 */
 func concat(s1 string, s2 string) string {
 	return s1 + s2
@@ -19,7 +21,7 @@ func concatUsage() {
 	fmt.Println(concat("The 5th scenario", "has been released to the audience"))
 }
 
-//Passing variables by values in go
+// Passing variables by values in go
 func monthlyBillIncrease(costPerSend, numLastMonth, numThisMonth int) int {
 	lastMonthBill := getBillForMonth(costPerSend, numLastMonth)
 	thisMonthBill := getBillForMonth(costPerSend, numThisMonth)
@@ -30,7 +32,7 @@ func getBillForMonth(costPerSend, messagesSent int) int {
 	return costPerSend * messagesSent
 }
 
-//Ignoring return values
+// Ignoring return values
 func getProductMessage(tier string) string {
 	quantityMsg, priceMsg, _ := getProductInfo(tier)
 	return "You get " + quantityMsg + " for " + priceMsg + "."
@@ -56,7 +58,7 @@ func getCoords() (x, y int) {
 }
 */
 
-func yearsUntilEvents(age int) ( yearsUntilAdult, yearsUntilDrinking, yearsUntilCarRental int) {
+func yearsUntilEvents(age int) (yearsUntilAdult, yearsUntilDrinking, yearsUntilCarRental int) {
 	yearsUntilAdult = 18 - age
 	if yearsUntilAdult < 0 {
 		yearsUntilAdult = 0
@@ -73,15 +75,15 @@ func yearsUntilEvents(age int) ( yearsUntilAdult, yearsUntilDrinking, yearsUntil
 	return
 }
 
-//Guard Clauses OR Early returns
+// Guard Clauses OR Early returns
 func divide(dividend, divisor int) (int, error) {
 	if divisor == 0 {
 		return 0, errors.New("can't divide by zero")
 	}
-	return dividend/divisor, nil
+	return dividend / divisor, nil
 }
 
-//Anonymous functions: Used when the func is only being used once
+// Anonymous functions: Used when the func is only being used once
 func printReports(intro, body, outro string) {
 	// Call printCostReport for each message with the correct cost function
 	printCostReport(func(message string) int {
@@ -101,4 +103,32 @@ func printCostReport(costCalculator func(string) int, message string) {
 	cost := costCalculator(message)
 	fmt.Printf(`Message: "%s" Cost: %v cents`, message, cost)
 	fmt.Println()
+}
+
+//Defer
+/*Deferred functions are typically used to clean up resources that are no
+longer being used. Often to close database connections,
+ file handlers and the like.*/
+
+func connectToDB() bool {
+	fmt.Println("Connecting to DB...")
+	return false
+}
+
+func connectToPaymentProvider() bool {
+	fmt.Println("Connecting to Payment Provider...")
+	return true
+}
+
+func bootUp() {
+	defer fmt.Println("Textio BootUp Done!") // Ensures this message is always printed
+	ok := connectToDB()
+	if !ok {
+		return // Early return if DB connection fails
+	}
+	ok = connectToPaymentProvider()
+	if !ok {
+		return // Early return if Payment Provider connection fails
+	}
+	fmt.Println("All systems ready!") // Only prints if both connections succeed
 }

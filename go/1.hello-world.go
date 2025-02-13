@@ -1,9 +1,10 @@
 package main
+
 import "fmt"
 
 func main() {
 	fmt.Println("Starting Textio Server")
-	fmt.Printf("%v %f %v %q\n",smsSendingLimit, costPerSMS, hasPermission, username)
+	fmt.Printf("%v %f %v %q\n", smsSendingLimit, costPerSMS, hasPermission, username)
 
 	printVariables()
 
@@ -26,4 +27,6 @@ func main() {
 		"Such a lovely place",
 		"Plenty of room at the Hotel California",
 	)
+
+	bootUp()
 }
