@@ -66,3 +66,29 @@ func (ft fullTime) getSalary() int {
 func (ft fullTime) getName() string {
 	return ft.name
 }
+
+// Multiple interfaces
+
+func (e email) cost() float64 {
+	if !e.isSubscribed {
+		return float64(len(e.body)) * 0.05
+	}
+	return float64(len(e.body)) * 0.01
+}
+
+func (e email) format() string {
+	return e.body
+}
+
+type expense interface {
+	cost() float64
+}
+
+type formatter interface {
+	format() string
+}
+
+type email struct {
+	isSubscribed bool
+	body         string
+}
