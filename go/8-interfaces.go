@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
@@ -33,7 +34,7 @@ func (sr sendingReport) getMessage() string {
 	return fmt.Sprintf(`Your "%s" report is ready. You've sent %v messages.`, sr.reportName, sr.numberOfSends)
 }
 
-//Interface Implementation is implicit in Go
+// Interface Implementation is implicit in Go
 
 type employee interface {
 	getName() string
@@ -69,13 +70,6 @@ func (ft fullTime) getName() string {
 
 // Multiple interfaces
 
-func (e email) cost() float64 {
-	if !e.isSubscribed {
-		return float64(len(e.body)) * 0.05
-	}
-	return float64(len(e.body)) * 0.01
-}
-
 func (e email) format() string {
 	return e.body
 }
@@ -91,4 +85,87 @@ type formatter interface {
 type email struct {
 	isSubscribed bool
 	body         string
+	toAddress    string
+}
+
+// Type Assertion: take and an interface and cast it to its underlying type
+
+func getExpenseReport(e expense) (string, float64) {
+	em, okEmail := e.(email)
+	if okEmail {
+		return em.toAddress, em.cost()
+	}
+
+	sm, okSms := e.(sms)
+	if okSms {
+		return sm.toPhoneNumber, sm.cost()
+	}
+
+	return "", 0.0
+}
+
+type sms struct {
+	isSubscribed  bool
+	body          string
+	toPhoneNumber string
+}
+
+func (e email) cost() float64 {
+	if !e.isSubscribed {
+		return float64(len(e.body)) * .05
+	}
+	return float64(len(e.body)) * .01
+}
+
+func (s sms) cost() float64 {
+	if !s.isSubscribed {
+		return float64(len(s.body)) * .1
+	}
+	return float64(len(s.body)) * .03
+}
+
+func TestGetExpenseReport(t *testing.T) {
+	type testCase struct {
+		expense      expense
+		expectedTo   string
+		expectedCost float64
+	}
+	tests := []testCase{
+		{
+			email{isSubscribed: true, body: "Whoa there!", toAddress: "soldier@monty.com"},
+			"soldier@monty.com",
+			0.11,
+		},
+		{
+			sms{isSubscribed: false, body: "Halt! Who goes there?", toPhoneNumber: "+155555509832"},
+			"+155555509832",
+			2.1,
+		},
+	}
+
+	passCount := 0
+	failCount := 0
+
+	for _, test := range tests {
+		to, cost := getExpenseReport(test.expense)
+		if to != test.expectedTo || cost != test.expectedCost {
+			failCount++
+			t.Errorf(`---------------------------------
+Inputs:     %+v
+Expecting:  (%v, %v)
+Actual:     (%v, %v)
+Fail`, test.expense, test.expectedTo, test.expectedCost, to, cost)
+		} else {
+			passCount++
+			fmt.Printf(`---------------------------------
+Inputs:     %+v
+Expecting:  (%v, %v)
+Actual:     (%v, %v)
+Pass
+`, test.expense, test.expectedTo, test.expectedCost, to, cost)
+		}
+	}
+
+	fmt.Println("---------------------------------")
+	fmt.Printf("%d passed, %d failed\n", passCount, failCount)
 }
