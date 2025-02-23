@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Interfaces are collections of method signatures
+// 1. Interfaces are collections of method signatures
 
 func sendMessage(msg message) {
 	fmt.Println(msg.getMessage())
@@ -34,7 +34,7 @@ func (sr sendingReport) getMessage() string {
 	return fmt.Sprintf(`Your "%s" report is ready. You've sent %v messages.`, sr.reportName, sr.numberOfSends)
 }
 
-// Interface Implementation is implicit in Go
+// 2. Interface Implementation is implicit in Go
 
 type employee interface {
 	getName() string
@@ -68,7 +68,7 @@ func (ft fullTime) getName() string {
 	return ft.name
 }
 
-// Multiple interfaces
+// 3. Multiple interfaces
 
 func (e email) format() string {
 	return e.body
@@ -88,7 +88,7 @@ type email struct {
 	toAddress    string
 }
 
-// Type Assertion: take and an interface and cast it to its underlying type
+// 4. Type Assertion: take and an interface and cast it to its underlying type
 
 func getExpenseReport(e expense) (string, float64) {
 	em, okEmail := e.(email)
@@ -168,4 +168,17 @@ Pass
 
 	fmt.Println("---------------------------------")
 	fmt.Printf("%d passed, %d failed\n", passCount, failCount)
+}
+
+// 5. Type Switches: make it easy to do several type assertions in a series
+
+func getExpenseReport2(e expense) (string, float64) {
+	switch expenseNature := e.(type) {
+	case email:
+		return expenseNature.toAddress, expenseNature.cost()
+	case sms:
+		return expenseNature.toPhoneNumber, expenseNature.cost()
+	default:
+		return "", 0.0
+	}
 }
