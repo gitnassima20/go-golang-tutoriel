@@ -182,3 +182,7 @@ func getExpenseReport2(e expense) (string, float64) {
 		return "", 0.0
 	}
 }
+
+// TO REMEMBER:
+/* Interfaces should have no knoweldge of satisfying types,
+   but some types have knoweldge of the interfaces they satisfy */
