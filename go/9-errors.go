@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// Handling errors
+
 func sendSMSToCouple(msgToCustomer, msgToSpouse string) (float64, error) {
 	costSMSCustomer, err := sendSMS(msgToCustomer)
 	if err != nil {
@@ -23,6 +25,24 @@ func sendSMS(message string) (float64, error) {
 	return costPerChar * float64(len(message)), nil
 }
 
+// Formatting Error messages
+
 func getSMSErrorString(cost float64, recipient string) string {
 	return fmt.Sprintf("SMS that costs %2.f to be sent to %v can not be sent", cost, recipient)
+}
+
+// Creating custom error
+type divideError struct {
+	dividend float64
+}
+
+func (de divideError) Error() string {
+	return fmt.Sprintf("can't divide %v by zero", de.dividend)
+}
+
+func dividing(dividend, divisor float64) (float64, error) {
+	if divisor == 0 {
+		return 0, divideError{dividend: dividend}
+	}
+	return dividend / divisor, nil
 }
