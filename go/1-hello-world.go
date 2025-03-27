@@ -53,4 +53,5 @@ func main() {
 
 	/* loops */
 	fmt.Println(bulkSend(10))
+	fmt.Println(maxMessages(1000))
 }

@@ -7,3 +7,14 @@ func bulkSend(numMessages int) float64 {
 	}
 	return totalCost
 }
+
+// Omitting Conditions from a for Loop
+func maxMessages(tresh int) int {
+	totalCost := 0
+	for i := 0; ; i++ {
+		totalCost += 100 + (i - 1)
+		if totalCost > tresh {
+			return i - 1
+		}
+	}
+}
