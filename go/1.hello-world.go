@@ -50,4 +50,7 @@ func main() {
 	}
 
 	fmt.Println(auth.getBasicAuth())
+
+	/* loops */
+	fmt.Println(bulkSend(10))
 }
