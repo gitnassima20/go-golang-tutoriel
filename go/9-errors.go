@@ -52,7 +52,7 @@ func dividing(dividend, divisor float64) (float64, error) {
 
 func divideUsingErrorPackage(x, y float64) (float64, error) {
 	if y == 0 {
-		return 0.0, errors.New("Cannot divide %v by zero", x)
+		return 0.0, errors.New("Cannot divide by zero")
 	}
 	return x / y, nil
 }
