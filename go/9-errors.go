@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // Handling errors
 
@@ -45,4 +48,11 @@ func dividing(dividend, divisor float64) (float64, error) {
 		return 0, divideError{dividend: dividend}
 	}
 	return dividend / divisor, nil
+}
+
+func divideUsingErrorPackage(x, y float64) (float64, error) {
+	if y == 0 {
+		return 0.0, errors.New("Cannot divide %v by zero", x)
+	}
+	return x / y, nil
 }
