@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func bulkSend(numMessages int) float64 {
 	totalCost := 0.0
 	for i := 0; i < numMessages; i++ {
@@ -28,4 +30,19 @@ func getMaxMessagesToSend(costMultiplier float64, maxCostInPennies int) int {
 		maxMessagesToSend++
 	}
 	return maxMessagesToSend
+}
+
+// Modulo Operator
+func fizzbuzz() {
+	for i := 0; i < 100; i++ {
+		if i%3 == 0 && i%5 == 0 {
+			fmt.Println("fuzzbuzz")
+		} else if i%3 == 0 {
+			fmt.Println("fuzz")
+		} else if i%5 == 0 {
+			fmt.Println("buzz")
+		} else {
+			fmt.Println(i)
+		}
+	}
 }

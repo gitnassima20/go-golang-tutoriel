@@ -55,4 +55,5 @@ func main() {
 	fmt.Println(bulkSend(10))
 	fmt.Println(maxMessages(1000))
 	fmt.Println(getMaxMessagesToSend(1.1, 5))
+	fizzbuzz()
 }
