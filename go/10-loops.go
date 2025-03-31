@@ -18,3 +18,14 @@ func maxMessages(tresh int) int {
 		}
 	}
 }
+
+// Writing a while loop in Go's style
+func getMaxMessagesToSend(costMultiplier float64, maxCostInPennies int) int {
+	actualCostInPennies := 1.0
+	maxMessagesToSend := 1
+	for actualCostInPennies <= float64(maxCostInPennies) {
+		actualCostInPennies *= costMultiplier
+		maxMessagesToSend++
+	}
+	return maxMessagesToSend
+}
